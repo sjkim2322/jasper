@@ -105,17 +105,20 @@ table { border-collapse: collapse; border-spacing: 0; }
    ========================================================================== */
 
 /* Import the font file with the icons in it */
+/*@font-face {*/
+    /*font-family: "casper-icons";*/
+    /*src:url("../fonts/casper-icons.eot?v=1");*/
+    /*src:url("../fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),*/
+    /*url("../fonts/casper-icons.woff?v=1") format("woff"),*/
+    /*url("../fonts/casper-icons.ttf?v=1") format("truetype"),*/
+    /*url("../fonts/casper-icons.svg?v=1#icons") format("svg");*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
 @font-face {
-    font-family: "casper-icons";
-    src:url("../fonts/casper-icons.eot?v=1");
-    src:url("../fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
-    url("../fonts/casper-icons.woff?v=1") format("woff"),
-    url("../fonts/casper-icons.ttf?v=1") format("truetype"),
-    url("../fonts/casper-icons.svg?v=1#icons") format("svg");
-    font-weight: normal;
-    font-style: normal;
+    font-family: "Gidole-Regular";
+    src: url('../fonts/Gidole-Regular.ttf') format('truetype');
 }
-
 /* Apply these base styles to all icons */
 [class^="icon-"]:before, [class*=" icon-"]:before {
     font-family: "casper-icons", "Open Sans", sans-serif;
@@ -311,11 +314,13 @@ blockquote {
     padding: 0 0 0 1.75em;
     border-left: #4A4A4A 0.4em solid;
     margin-left: 0;
+    font-family: Gidole-Regular;
 }
 
 blockquote p {
     margin: 0.8em 0;
-    font-style: italic;
+    font-size: smaller;
+    font-style: normal;
 }
 
 blockquote small {
@@ -339,7 +344,7 @@ mark {
 
 code, tt {
     padding: 1px 3px;
-    font-family: Inconsolata, monospace, sans-serif;
+    font-family: Gidole-Regular, monospace, sans-serif;
     font-size: 0.85em;
     white-space: pre-wrap;
     border: #E3EDF3 1px solid;
@@ -354,7 +359,7 @@ pre {
     border: #E3EDF3 1px solid;
     width: 100%;
     padding: 10px;
-    font-family: Inconsolata, monospace, sans-serif;
+    font-family: Gidole-Regular, monospace, sans-serif;
     font-size: 0.9em;
     white-space: pre;
     overflow: auto;

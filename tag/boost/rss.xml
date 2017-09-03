@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>sjkim2322.github.io/logbook/</title>
+   
+   <link>http://sjkim2322.github.io/logbook/</link>
+   <description></description>
+   <language>en-uk</language>
+   <managingEditor> SeongJin Kim</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Spring FrameWork Injection Type</title>
+	  <link>/logbook//Spring-Injection-Type</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-02T01:00:00+09:00</pubDate>
+	  <guid>/logbook//Spring-Injection-Type</guid>
+	  <description><![CDATA[
+	     <h3 id="injection-종류">Injection 종류</h3>
+<p><strong>가장 이해가 잘되었던 Post :</strong> <br />
+<a href="http://vojtechruzicka.com/field-dependency-injection-considered-harmful/">Field Dependency Injection Considered Harmful</a></p>
+<blockquote>
+  <p>Spring이 Bean들을 Injection 하는 방법은 대표적으로 3개이다.</p>
+  <ol>
+    <li>Setter Injection</li>
+    <li>Constructor Injection</li>
+    <li>Field Injection</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <p>그리고 Spring에서는 지원하지 않는 Injection 방식인 Interface를 활용한 방법이 있다고한다.
+코드 예시는 다음과 같다.</p>
+</blockquote>
+
+<p>1.Setter Injection</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>class MyController {
+     private MyService myservice;
+     @Autowired
+     public setMyservice(Myservice myservice) {
+          this.myservice = myservice;
+     }
+}
+
+</code></pre>
+</div>
+<p>2.Constructor Injection</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>class MyController {    
+     private MyService myservice;
+     @Autowired
+     public MyController(Myservice myservice) {
+          this.myservice = myservice;
+     }
+}
+
+</code></pre>
+</div>
+
+<p>3.Field Injection</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>class MyController {
+     @Autowired
+     CategoryService categoryService;
+}
+</code></pre>
+</div>
+
+<blockquote>
+  <p>성능상으로는 3가지 방법모드 같다고 판단 된다.
+Bean이 Injection 되는 시점이 조금 씩다를뿐</p>
+</blockquote>
+
+<blockquote>
+  <p>코드의 라인수로만 보면 Field Injection을 사용하는 것이 가장 간단하다.
+하지만 Spring에서는 Field Injection사용을 지양할 것을 권유한다.
+IntelliJ에서도 Field Injection을 사용하면 Warning Comment가 생긴다.</p>
+</blockquote>
+
+<blockquote>
+  <p>인터넷을 뒤져봐도 Setter VS Constructor 와 관련된 내용이 많고 Field Injection은 거의 언급조차 되지 않는다.</p>
+</blockquote>
+
+<blockquote>
+  <p>먼저 Setter와 Constructor Injection차이를 알아보자.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1. setter Injection in more readable than constructor injection in Spring configuration file usually applicationContext.xml .   
+</code></pre>
+</div>
+
+<blockquote>
+  <p>setter Injection의 경우 인젝션할 클래스가 함수명에 명시되기때문에 설정파일에서 더 직관적으로 읽을 수 있다
+constructor의 경우 설정파일에서 인젝션을 명시한경우 실제 클래스파일을 봐야지만 생성자가 무엇을 주입하는지 알수 있다.
+하지만 xml 형태의 설정파일뿐만아니라 Java기반으로 설정하는 방법도 있다. Java파일을 기반으로 설정한다면 Constructor를 통해서도 
+쉽게 파악이 가능할 것같다.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2. one of the drawback of  setter injection is that it does not ensures dependency Injection. 
+which means you may have an object with incomplete dependency. On other hand constructor Injection does not allow you to construct object, until your dependencies are ready.
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Injection 시점과 관련된 이야기인듯하다. 먼저 자바에서 클래스가 만들어지는 시점(Bean이생성되는 시점)에 <code class="highlighter-rouge">New ClassName()</code>을 통해서 클래스의 Constructor가 실행된다.
+즉, Constructor를 통해서 injection을 한다면 “Bean생성” == “외부 Bean Injection” 이 성립하게된다. 그렇기 때문에 Constructor Injection은 의존성을 주입하지 않고서는 Bean이 생성될 수 없으므로 
+확실한 Injection을 보장한다. <br />
+하지만 Setter Injection의 경우, 의존성을 주입받는 Bean의 생성과 이 Bean에 다른 Bean을 주입시키는 과정이 분리되게 된다.
+먼저 의존성이 주입되지 않는 Bean을 생성한뒤 Setter함수를 통해서 의존성을 주입하게 된다. 
+그렇기 때문에 이방법은 의존성이 주입됐다는 것을 보장할 수가 없다.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3. In other words, we can force a user of our class (again, this might be Spring but it could also be a unit test that instantiates your class directly) to instantiate it while passing in arguments.
+</code></pre>
+</div>
+
+<blockquote>
+  <p>이 말이 가장 중요한 말이 것 같다. 사실 1번과 2번이 잘 이해가 안되었었다. ‘어짜피 Spring이 결국에는 똑같은 결과를 내어주는데 이게 무슨 의미가 있는가?’라고 생각했다.
+하지만 3번을 읽고 <code class="highlighter-rouge">POJO</code> 와 <code class="highlighter-rouge">Unit Test 에서의 Unit</code>이라는 것의 의미를 조금더 알게 되었다. 
+스프링은 자바기반 Framework에 불과 하다. 즉 개발자가 작성한 코드와 Spring framework이 완전히 분리가 될 수 있어야한다.
+진정한 UnitTest란 Framework에 의존하지 않는 상태에서 Test가 되야한다.</p>
+</blockquote>
+
+<p><strong>그렇기 때문에 Feild Injection을 사용한다면 개발자가 작성한 코드가 Spring의 구조에서 벗어나게된다면 Bean을 주입할 코드가 추가로 작성이 되어야한다.</strong></p>
+
+<p>field에 어노테이션을 다는것만으로 Spring은 Injection을 해주지만 실제로는 외부에서 객체를 받는 함수가 존재해야한다.</p>
+
+<p>사실 Spring의 성능상에 차이가 있는 줄알고 찾아봤지만 오히려 뭔가 OOP적인 느낌이 무엇인지 알게 되었다.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>BoostCamp2기 wiki</title>
+	  <link>/logbook//BoostCamp2-Web-Wiki</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-02T01:00:00+09:00</pubDate>
+	  <guid>/logbook//BoostCamp2-Web-Wiki</guid>
+	  <description><![CDATA[
+	     <h2 id="boostcamp-2기-web과정-wiki">BoostCamp 2기 Web과정 WIKI</h2>
+<blockquote>
+  <p>부스트캠프 2기 Web 과정을 수료한 다른팀들 Wiki 입니다.</p>
+
+  <p><a href="https://github.com/Kgwkgwkgw/reservation-system/wiki">네버레스트 팀 Wiki</a> :
+Design Pattern<br />
+<a href="https://github.com/boostcamp2-gavas/reservation-system/wiki">각자바스 팀 Wiki</a> : 
+Spring Security<br />
+<a href="https://github.com/Se-yeong/reservation-system/wiki">미사일 팀 Wiki</a> : 
+Test<br />
+<a href="https://github.com/tjdcks12/reservation-system/wiki">네발자전거 팀 Wiki</a> : 
+웹 보안<br />
+<a href="https://github.com/BoostCamp2-OZ/reservation-system/wiki">오주의마법사 팀 Wiki</a> : 
+웹 성능(Front)<br />
+<a href="https://github.com/jungtaejoon/reservation-system/wiki">덩케르크 팀 Wiki</a> : 
+웹 MVC, REST<br />
+<a href="https://github.com/seokgun88/reservation-system/wiki">YG팀 Wiki</a> : 
+ORM : JPA <br />
+<a href="https://github.com/boostcamp2-apink/reservation-system/wiki">인간중심팀 Wiki</a> : 
+자바스크립트 비동기</p>
+</blockquote>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Spring Controller의 Parameter Annotation</title>
+	  <link>/logbook//Spring-Request-Parameter-Annotation</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-02T01:00:00+09:00</pubDate>
+	  <guid>/logbook//Spring-Request-Parameter-Annotation</guid>
+	  <description><![CDATA[
+	     <h3 id="controller의-parameter">Controller의 Parameter</h3>
+<blockquote>
+  <p>Controller클래스입장에서 URI요청에 대한 Entry Point (실제 Entry Point는 Controller이전에 수많은 것들을 거쳐오겟지만)는 
+그안의 Method에서 시작된다. Method는 request로부터 Data를 취하기 위해서 파라미터를 선언하는데 이게 httpservletrequest부터 시작해서
+너무도 많은 Data type이 있다. 단순히 일반 객체를 파라미터로 선언하고 Annotation을 통해 자동으로 들어간다.
+어떻게 이게 가능할까? 또 각각 무슨차이가 있을까? 
+코드를 보면 대략 이렇다.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//HttpServletRequest
+public String method(HttpServletRequest request) {
+   
+}
+
+//@RequestParam
+public String method(@RequestParam("id") int id) {
+   
+}
+
+//@ModelAttribute
+public String method(@ModelAttribute Object myObject) {
+   
+}
+
+//@ResquestBody
+public String method(@ResquestBody Object myObject) {
+   
+}
+//@pathvariable
+@GetMapping("/{productId}")
+public String method(@pathvariable int productId) {
+   
+}
+</code></pre>
+</div>
+<blockquote>
+  <p>먼저 <code class="highlighter-rouge">HttpServletRequest</code>부터 알아보자. <br />
+Web에서 클라이언트로 받은 HTTP Request는 단순히 텍스트이다. <br />
+서버의 구동환경에 따라서 WAS가 있을수도 있고 WebServer만 있을 수도 있지만 Servlet컨테이너를 포함하고 있는 WAS를 거칠 경우, <br />
+ServletRequest인터페이스를 거쳐 HTTP프로토콜에 한해서 HttpServletRequest 인터페이스를 구현한 어떤 객체에 Request정보들이 Parsing되는 듯 하다. <br />
+Spring을 거쳐 Controller클래스의 method에 도착했을때는 HttpServletRequest를 파라미터로 선언하게 되면 파싱된 Request정보를 사용할 수 있게 된다. <br />
+하지만 Application을 개발하는 Layer에서 특정 Container가 만들어내는 객체를 바로사용하는 것을 지향한다고 한다. <br />
+(사실 잘이해가 안되는 부분..)</p>
+</blockquote>
+
+<blockquote>
+  <p>이후 다른 어노테이션들은 모두 HttpServletRequest를 이용하여 자동으로 일반객체에 파싱을 해주는 역할을 한다. <br />
+RequestParam부터 알아보자.    <br />
+이 어노테이션이 HTTP의 Get방식에서 QueryString을 취할 때만 사용하는 것으로 알고 있는 사람들이 많다.  <br />
+본인도 그랬다. 하지만 이 어노테이션은 HTTP Method에 제한되지 않고 Request내부에서 어노테이션 뒤에 명시한 이름과 같은 name을 가지고 있는 
+데이터를 찾아서 파싱해준다.  <br />
+쉽게 얘기하면 클라이언트가 서버에게 Request를 보낼때 Content Type을 함께 보낸다.    <br />
+Default 값은  <code class="highlighter-rouge">application/x-www-form-urlencoded</code>로 Get방식으로 보낼때 ? 뒤에 붙는 Format가 정확히 같다.
+ex) <code class="highlighter-rouge">key=value&amp;key=value</code> <br />
+RequestParam은 위와 같은 content type으로 넘어온 데이터들 중에서 Key값과 본인이 찾아야할값이 같은 value를 파싱해줄수 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p>그렇다면 왜 이 어노테이션을 Post방식에서는 자주 볼수 없는 걸까? 
+기본적으로 Post방식은 form을 통해서 전송이 될 것이고 그 Content Type 또한  <code class="highlighter-rouge">application/x-www-form-urlencoded</code>으로 될텐데 말이다.
+그 이유는 ModelAttribute 어노테이션에 있다고 본다. 예를 들어 다음과 같은 클래스가 있다고 생각해보자</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+  
+    <span class="c1">//getter, setter, constructor...  </span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>클라이언트로 부터 id, name, age를 Post방식으로 받아오고 Content type은 Default일 경우 이를 받아내는 Controller의 함수는 다음과 같다.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public String method(@RequestParam("id") int id, 
+                     @RequestParam("name") String name),
+                     @RequestParam("age") int age)) {
+   Member member = new Member();
+   member.setId(id);
+   member.setName(name);
+   member.setAge(age);
+}
+</code></pre>
+</div>
+<blockquote>
+  <p>꽤 괜찮다고 생각할 수 있다. 하지만 클라이언트로부터 받아오는 데이터가 3개보다 훨씬많을 경우에는 코드가 굉장히 길어진다.
+ModelAttribute 어노테이션은 이러한 문제를 본인이 짊어진다.
+클래스앞에 @ModelAttribute를 붙이면 선언된 클래스를 하나 생성하여 내부에있는 모든 변수들에게 RequestParam을 한것과 같은 결과를 내어준다.</p>
+</blockquote>
+
+<blockquote>
+  <p>클라이언트의 요청에 대한 응답이 api형태가 아니고 반드시 새로운 페이지를 redirect하는 서버의 경우, <br />
+사실 위의 방법만으로도 거의 해결이 가능했던것 같다. 하지만 페이지 전환없이 ajax와같은 Data만을 요구하는 요청에 대해서는 
+보통 Content Type이 Default이기 보다는 <code class="highlighter-rouge">application/json</code>으로 보내게 된다. 
+앞에서 말한 것처럼 ModelAttribute와 RequestParam의 경우 <code class="highlighter-rouge">application/x-www-form-urlencoded</code>Type의 데이터만 다룰 수 있기 때문에 <br />
+Json 형태로 넘어온 데이터에 대해서는 아무것도 할 수 없다.  그럴 경우 RequestBody를 사용하게 되는데 <br />
+여기서 사람들이 잘못 이해하고 있는 부분이 있는 것 같다. <em>RequestBody는 Json을 위한 Parsing Annotation이 아니다.</em> <br />
+RequestBody는 뒤에 명시한 Object와 클라이언트로 부터받은 Request의 Body 부분을 완벽하게 1:1 로 매칭시킨다. <br />
+RequestBody를 사용한 경우 Spring은 Request로 부터 넘어온 Data를 명시한 Object에 완벽히 Parsing시켜줄 수 있는 Converter를 찾는다.
+이러한 Converter들은 HttpMessageConverter 인터페이스를 구현한 구현체들이다.  <code class="highlighter-rouge">application/json</code> 형태로 넘어온 데이터의 경우 
+Jackson을 기반으로하는 Converter가 이를 Parsing하여 Object에 그대로 mapping 해줄 수 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p>그렇다면 @pathvariable은 어떤 경우에 사용할까? <br />
+@pathvariable의 사용은 REST API가 등장하면서 자주 사용하게 된 것같다. 사실 REST API를 준수하지 않는다면 RequestParam과 하는 역할이 동일하다.
+차이점은 RequestParam의 경우 자신이 Mapping할 데이터를 ?뒤에서 즉, 쿼리스트링 또는 Request의 Body부분에 찾는다.
+하지만  @pathvariable의 경우 Request하는 URI안에서 데이터를 찾는다. <br />
+그렇기 때문에 @pathvariable은 <code class="highlighter-rouge">@GetMapping("/{productId}")</code>처럼 @XXXMapping 어노테이션과 함께 동작해야한다.
+요청을 하는 URI로 부터 특정부분을 Mapping하고자 하는 것이 목적이기 때문에 URI에서 Mapping하고자 하는 부분을 명시를 해주고
+파라미터를 통해서 그 부분을 Object에 Parsing할 수 있다.</p>
+</blockquote>
+
+<blockquote>
+  <p>막상 정리를 하려고하니까 컨트롤러 메소드 파라미터관련해서는 정말 끝이 없는 것 같다. 일단은 이정도만..
+<del>쓰다가 느낀거지만 Parsing이랑 Mapping 차이는 뭐지??;;;</del></p>
+</blockquote>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>I Have a Dream</title>
+	  <link>/logbook//i-have-a-dream</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>1963-08-28T19:18:00+09:00</pubDate>
+	  <guid>/logbook//i-have-a-dream</guid>
+	  <description><![CDATA[
+	     <p>I am happy to join with you today in what will go down in history as the greatest demonstration for freedom in the history of our nation.</p>
+
+<p>Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of their captivity.</p>
+
+<p>But one hundred years later, the Negro still is not free. One hundred years later, the life of the Negro is still sadly crippled by the manacles of segregation and the chains of discrimination. One hundred years later, the Negro lives on a lonely island of poverty in the midst of a vast ocean of material prosperity. One hundred years later, the Negro is still languished in the corners of American society and finds himself an exile in his own land. And so we’ve come here today to dramatize a shameful condition.</p>
+
+<p>In a sense we’ve come to our nation’s capital to cash a check. When the architects of our republic wrote the magnificent words of the Constitution and the Declaration of Independence, they were signing a promissory note to which every American was to fall heir. This note was a promise that all men, yes, black men as well as white men, would be guaranteed the “unalienable Rights” of “Life, Liberty and the pursuit of Happiness.” It is obvious today that America has defaulted on this promissory note, insofar as her citizens of color are concerned. Instead of honoring this sacred obligation, America has given the Negro people a bad check, a check which has come back marked “insufficient funds.”</p>
+
+<p>But we refuse to believe that the bank of justice is bankrupt. We refuse to believe that there are insufficient funds in the great vaults of opportunity of this nation. And so, we’ve come to cash this check, a check that will give us upon demand the riches of freedom and the security of justice.</p>
+
+<p>We have also come to this hallowed spot to remind America of the fierce urgency of Now. This is no time to engage in the luxury of cooling off or to take the tranquilizing drug of gradualism. Now is the time to make real the promises of democracy. Now is the time to rise from the dark and desolate valley of segregation to the sunlit path of racial justice. Now is the time to lift our nation from the quicksands of racial injustice to the solid rock of brotherhood. Now is the time to make justice a reality for all of God’s children.</p>
+
+<p>It would be fatal for the nation to overlook the urgency of the moment. This sweltering summer of the Negro’s legitimate discontent will not pass until there is an invigorating autumn of freedom and equality. Nineteen sixty-three is not an end, but a beginning. And those who hope that the Negro needed to blow off steam and will now be content will have a rude awakening if the nation returns to business as usual. And there will be neither rest nor tranquility in America until the Negro is granted his citizenship rights. The whirlwinds of revolt will continue to shake the foundations of our nation until the bright day of justice emerges.</p>
+
+<p>But there is something that I must say to my people, who stand on the warm threshold which leads into the palace of justice: In the process of gaining our rightful place, we must not be guilty of wrongful deeds. Let us not seek to satisfy our thirst for freedom by drinking from the cup of bitterness and hatred. We must forever conduct our struggle on the high plane of dignity and discipline. We must not allow our creative protest to degenerate into physical violence. Again and again, we must rise to the majestic heights of meeting physical force with soul force.</p>
+
+<p>The marvelous new militancy which has engulfed the Negro community must not lead us to a distrust of all white people, for many of our white brothers, as evidenced by their presence here today, have come to realize that their destiny is tied up with our destiny. And they have come to realize that their freedom is inextricably bound to our freedom.</p>
+
+<p>We cannot walk alone.</p>
+
+<p>And as we walk, we must make the pledge that we shall always march ahead.</p>
+
+<p>We cannot turn back.</p>
+
+<p>There are those who are asking the devotees of civil rights, “When will you be satisfied?” We can never be satisfied as long as the Negro is the victim of the unspeakable horrors of police brutality. We can never be satisfied as long as our bodies, heavy with the fatigue of travel, cannot gain lodging in the motels of the highways and the hotels of the cities. We cannot be satisfied as long as the negro’s basic mobility is from a smaller ghetto to a larger one. We can never be satisfied as long as our children are stripped of their self-hood and robbed of their dignity by signs stating: “For Whites Only.” We cannot be satisfied as long as a Negro in Mississippi cannot vote and a Negro in New York believes he has nothing for which to vote. No, no, we are not satisfied, and we will not be satisfied until “justice rolls down like waters, and righteousness like a mighty stream.”</p>
+
+<p>I am not unmindful that some of you have come here out of great trials and tribulations. Some of you have come fresh from narrow jail cells. And some of you have come from areas where your quest – quest for freedom left you battered by the storms of persecution and staggered by the winds of police brutality. You have been the veterans of creative suffering. Continue to work with the faith that unearned suffering is redemptive. Go back to Mississippi, go back to Alabama, go back to South Carolina, go back to Georgia, go back to Louisiana, go back to the slums and ghettos of our northern cities, knowing that somehow this situation can and will be changed.</p>
+
+<p>Let us not wallow in the valley of despair, I say to you today, my friends.</p>
+
+<p>And so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream.</p>
+
+<p>I have a dream that one day this nation will rise up and live out the true meaning of its creed: “We hold these truths to be self-evident, that all men are created equal.”</p>
+
+<p>I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of brotherhood.</p>
+
+<p>I have a dream that one day even the state of Mississippi, a state sweltering with the heat of injustice, sweltering with the heat of oppression, will be transformed into an oasis of freedom and justice.</p>
+
+<p>I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.</p>
+
+<p>I have a <strong>dream</strong> today!</p>
+
+<p>I have a dream that one day, down in Alabama, with its vicious racists, with its governor having his lips dripping with the words of “interposition” and “nullification” – one day right there in Alabama little black boys and black girls will be able to join hands with little white boys and white girls as sisters and brothers.</p>
+
+<p>I have a <strong>dream</strong> today!</p>
+
+<p>I have a dream that one day every valley shall be exalted, and every hill and mountain shall be made low, the rough places will be made plain, and the crooked places will be made straight; “and the glory of the Lord shall be revealed and all flesh shall see it together.”</p>
+
+<p>This is our hope, and this is the faith that I go back to the South with.</p>
+
+<p>With this faith, we will be able to hew out of the mountain of despair a stone of hope. With this faith, we will be able to transform the jangling discords of our nation into a beautiful symphony of brotherhood. With this faith, we will be able to work together, to pray together, to struggle together, to go to jail together, to stand up for freedom together, knowing that we will be free one day.</p>
+
+<p>And this will be the day – this will be the day when all of God’s children will be able to sing with new meaning:</p>
+
+<blockquote>
+  <p>My country ‘tis of thee, sweet land of liberty, of thee I sing.</p>
+
+  <p>Land where my fathers died, land of the Pilgrim’s pride,</p>
+
+  <p>From every mountainside, let freedom ring!</p>
+</blockquote>
+
+<p>And if America is to be a great nation, this must become true.</p>
+
+<p>And so let freedom ring from the prodigious hilltops of New Hampshire.</p>
+
+<blockquote>
+  <p>Let freedom ring from the mighty mountains of New York.</p>
+
+  <p>Let freedom ring from the heightening Alleghenies of Pennsylvania.</p>
+
+  <p>Let freedom ring from the snow-capped Rockies of Colorado.</p>
+
+  <p>Let freedom ring from the curvaceous slopes of California.</p>
+</blockquote>
+
+<p>But not only that:</p>
+
+<blockquote>
+  <p>Let freedom ring from Stone Mountain of Georgia.</p>
+
+  <p>Let freedom ring from Lookout Mountain of Tennessee.</p>
+
+  <p>Let freedom ring from every hill and molehill of Mississippi.</p>
+
+  <p>From every mountainside, let freedom ring.</p>
+</blockquote>
+
+<p>And when this happens, and when we allow freedom ring, when we let it ring from every village and every hamlet, from every state and every city, we will be able to speed up that day when all of God’s children, black men and white men, Jews and Gentiles, Protestants and Catholics, will be able to join hands and sing in the words of the old Negro spiritual:</p>
+
+<p><em>Free at last! Free at last!</em></p>
+
+<p><em>Thank God Almighty, we are free at last!</em></p>
+
+<p>By <strong>Martin Luther King</strong></p>
+
+<p>An American pastor, activist, humanitarian. People know him for leading the African-American Civil Rights movement using nonviolent civil disobedience.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

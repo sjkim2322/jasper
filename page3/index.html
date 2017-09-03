@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>SeongJin`s LogBook</title>
+    <title>Finding The Way Home</title>
     <meta name="description" content="SeongJin`s LogBook - " />
 
     <meta name="HandheldFriendly" content="True" />
@@ -60,7 +60,7 @@
 
 
 </head>
-<body class="tag-template nav-closed">
+<body class="paged archive-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">Menu</h3>
@@ -68,7 +68,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home " role="presentation"><a href="/logbook/">Home</a></li>
+        <li class="nav-home  nav-current" role="presentation"><a href="/logbook/">Home</a></li>
         <!--<li class="nav-about " role="presentation"><a href="/logbook/about">About</a></li>-->
         <li class="nav-fables " role="presentation"><a href="/logbook/tag/fables">Fables</a></li>
         <li class="nav-speeches " role="presentation"><a href="/logbook/tag/speeches">Speeches</a></li>
@@ -84,30 +84,25 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < dynamically overriding backgrounds for tags as well as descriptions -->
-
-
-<!-- < default}} -->
+        <!-- < default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/logbook/assets/images/cover2.jpg) ">
+<!-- The big featured header  -->
+<header class="main-header "
+        style="background-image: url(/logbook/assets/images/main.jpg) ">
     <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/ghost.png" alt="Blog Logo" /></a>
+        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/logbook.png" alt="Blog Logo" /></a>
         
             <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">Test</h1>
-            <h2 class="page-description">
-            
-			    <!--A 1-post collection-->
-            
-            </h2>
+            <h1 class="page-title">SeongJin`s LogBook</h1>
+            <h2 class="page-description"></h2>
         </div>
     </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -119,7 +114,11 @@
         
             <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 1 </span>
+        
+            <a class="newer-posts" href="/logbook/page2/" title="Previous Page">&laquo; Newer Posts</a>
+      
+    
+    <span class="page-number"> Page 3 of 3 </span>
      
 </nav>
         
@@ -129,10 +128,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/a-full-and-comprehensive-style-test">A Full and Comprehensive Style Test</a></h2>
+            <h2 class="post-title"><a href="/logbook/gettysburg-address">Gettysburg Address</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>This is just an ipsis verbis copy of the first example running on the Ghost Demo. This shows how you can use html styling to achieve... <a class="read-more" href="/logbook/a-full-and-comprehensive-style-test">&raquo;</a></p>
+            <p>Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men... <a class="read-more" href="/logbook/gettysburg-address">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
@@ -143,15 +142,11 @@
                 on 
                 
                     
-                       <a href='/logbook/tag/test'>Test</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/content'>Content</a>
+                       <a href='/logbook/tag/fiction'>Fiction</a>
                        
                 
             
-            <time class="post-date" datetime="2014-09-27">27 Sep 2014</time>
+            <time class="post-date" datetime="1863-11-19">19 Nov 1863</time>
         </footer>
     </article>
     
@@ -160,13 +155,18 @@
     
         <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 1 </span>
+        
+            <a class="newer-posts" href="/logbook/page2/" title="Previous Page">&laquo; Newer Posts</a>
+      
+    
+    <span class="page-number"> Page 3 of 3 </span>
      
 </nav>
     
 
 
 </main>
+
 
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/logbook/">SeongJin`s LogBook</a> &copy; 2017</section>

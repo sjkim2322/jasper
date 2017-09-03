@@ -3,18 +3,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    
-      <title>biomadeira.github.io/jasper/</title>
+      <title>sjkim2322.github.io/logbook/</title>
    
-   <link>http://biomadeira.github.io/jasper/</link>
-   <description>A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</description>
+   <link>http://sjkim2322.github.io/logbook/</link>
+   <description></description>
    <language>en-uk</language>
-   <managingEditor> Casper McFadden</managingEditor>
+   <managingEditor> SeongJin Kim</managingEditor>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
 	  <title>The Businessman & the fisherman</title>
 	  <link>/logbook//the-businessman-and-fisherman</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>2014-08-12T19:18:00+09:00</pubDate>
 	  <guid>/logbook//the-businessman-and-fisherman</guid>
 	  <description><![CDATA[
@@ -58,7 +58,7 @@
 	<item>
 	  <title>The Purpose of Education</title>
 	  <link>/logbook//the-purpose-of-education</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>1948-12-12T19:18:00+09:00</pubDate>
 	  <guid>/logbook//the-purpose-of-education</guid>
 	  <description><![CDATA[
@@ -86,7 +86,7 @@
 	<item>
 	  <title>Out to Sea</title>
 	  <link>/logbook//out-to-sea</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>1912-07-24T19:18:00+09:00</pubDate>
 	  <guid>/logbook//out-to-sea</guid>
 	  <description><![CDATA[
@@ -176,7 +176,7 @@
 	<item>
 	  <title>Looking-Glass house</title>
 	  <link>/logbook//looking-glass-house</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>1871-03-18T19:18:00+09:00</pubDate>
 	  <guid>/logbook//looking-glass-house</guid>
 	  <description><![CDATA[
@@ -219,7 +219,7 @@ The poor King looked puzzled and unhappy, and struggled with the pencil for some
 	<item>
 	  <title>Down The Rabbit Hole</title>
 	  <link>/logbook//down-the-rabbit-hole</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>1865-11-26T19:18:00+09:00</pubDate>
 	  <guid>/logbook//down-the-rabbit-hole</guid>
 	  <description><![CDATA[
@@ -283,7 +283,7 @@ The poor King looked puzzled and unhappy, and struggled with the pencil for some
 	<item>
 	  <title>Gettysburg Address</title>
 	  <link>/logbook//gettysburg-address</link>
-	  <author>Casper McFadden</author>
+	  <author>SeongJin Kim</author>
 	  <pubDate>1863-11-19T19:18:00+09:00</pubDate>
 	  <guid>/logbook//gettysburg-address</guid>
 	  <description><![CDATA[

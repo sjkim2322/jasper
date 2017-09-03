@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Finding The Way Home - Articles</title>
-    <description>A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</description>
+    <title>SeongJin`s LogBook - Articles</title>
+    <description></description>
     <link>
-    http://biomadeira.github.io/jasper/</link>
+    http://sjkim2322.github.io/logbook/</link>
+    
+      
+      <item>
+        <title>Spring Controller의 Parameter Annotation</title>
+        
+          <description>&lt;h3 id=&quot;controller의-parameter&quot;&gt;Controller의 Parameter&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Controller클래스입장에서 URI요청에 대한 Entry Point (실제 Entry Point는 Controller이전에 수많은 것들을 거쳐오겟지만)는 
+그안의 Method에서 시작된다. Method는 request로부터 Data를 취하기 위해서 파라미터를 선언하는데 이게 httpservletrequest부터 시작해서
+너무도 많은 Data type이 있다. 단순히 일반 객체를 파라미터로 선언하고 Annotation을 통해 자동으로 들어간다.
+어떻게 이게 가능할까? 또 각각 무슨차이가 있을까? 
+코드를 보면 대략 이렇다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//Spring-Request-Parameter-Annotation</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//Spring-Request-Parameter-Annotation</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Spring FrameWork Injection Type</title>
+        
+          <description>&lt;h3 id=&quot;injection-종류&quot;&gt;Injection 종류&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;가장 이해가 잘되었던 Post :&lt;/strong&gt; &lt;br /&gt;
+&lt;a href=&quot;http://vojtechruzicka.com/field-dependency-injection-considered-harmful/&quot;&gt;Field Dependency Injection Considered Harmful&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Spring이 Bean들을 Injection 하는 방법은 대표적으로 3개이다.&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Setter Injection&lt;/li&gt;
+    &lt;li&gt;Constructor Injection&lt;/li&gt;
+    &lt;li&gt;Field Injection&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//Spring-Injection-Type</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//Spring-Injection-Type</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>BoostCamp2기 wiki</title>
+        
+          <description>&lt;h2 id=&quot;boostcamp-2기-web과정-wiki&quot;&gt;BoostCamp 2기 Web과정 WIKI&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;부스트캠프 2기 Web 과정을 수료한 다른팀들 Wiki 입니다.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://github.com/Kgwkgwkgw/reservation-system/wiki&quot;&gt;네버레스트 팀 Wiki&lt;/a&gt; :
+Design Pattern&lt;br /&gt;
+&lt;a href=&quot;https://github.com/boostcamp2-gavas/reservation-system/wiki&quot;&gt;각자바스 팀 Wiki&lt;/a&gt; : 
+Spring Security&lt;br /&gt;
+&lt;a href=&quot;https://github.com/Se-yeong/reservation-system/wiki&quot;&gt;미사일 팀 Wiki&lt;/a&gt; : 
+Test&lt;br /&gt;
+&lt;a href=&quot;https://github.com/tjdcks12/reservation-system/wiki&quot;&gt;네발자전거 팀 Wiki&lt;/a&gt; : 
+웹 보안&lt;br /&gt;
+&lt;a href=&quot;https://github.com/BoostCamp2-OZ/reservation-system/wiki&quot;&gt;오주의마법사 팀 Wiki&lt;/a&gt; : 
+웹 성능(Front)&lt;br /&gt;
+&lt;a href=&quot;https://github.com/jungtaejoon/reservation-system/wiki&quot;&gt;덩케르크 팀 Wiki&lt;/a&gt; : 
+웹 MVC, REST&lt;br /&gt;
+&lt;a href=&quot;https://github.com/seokgun88/reservation-system/wiki&quot;&gt;YG팀 Wiki&lt;/a&gt; : 
+ORM : JPA &lt;br /&gt;
+&lt;a href=&quot;https://github.com/boostcamp2-apink/reservation-system/wiki&quot;&gt;인간중심팀 Wiki&lt;/a&gt; : 
+자바스크립트 비동기&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        
+        <pubDate>Fri, 01 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//BoostCamp2-Web-Wiki</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//BoostCamp2-Web-Wiki</guid>
+      </item>
+      
     
       
       <item>
@@ -16,8 +97,8 @@
         
         <pubDate>Sat, 27 Sep 2014 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//a-full-and-comprehensive-style-test</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//a-full-and-comprehensive-style-test</guid>
+        http://sjkim2322.github.io/logbook//a-full-and-comprehensive-style-test</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//a-full-and-comprehensive-style-test</guid>
       </item>
       
     
@@ -31,8 +112,8 @@
         
         <pubDate>Tue, 12 Aug 2014 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//the-businessman-and-fisherman</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//the-businessman-and-fisherman</guid>
+        http://sjkim2322.github.io/logbook//the-businessman-and-fisherman</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//the-businessman-and-fisherman</guid>
       </item>
       
     
@@ -46,8 +127,8 @@
         
         <pubDate>Wed, 28 Aug 1963 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//i-have-a-dream</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//i-have-a-dream</guid>
+        http://sjkim2322.github.io/logbook//i-have-a-dream</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//i-have-a-dream</guid>
       </item>
       
     
@@ -61,8 +142,8 @@
         
         <pubDate>Sun, 12 Dec 1948 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//the-purpose-of-education</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//the-purpose-of-education</guid>
+        http://sjkim2322.github.io/logbook//the-purpose-of-education</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//the-purpose-of-education</guid>
       </item>
       
     
@@ -76,8 +157,8 @@
         
         <pubDate>Wed, 24 Jul 1912 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//out-to-sea</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//out-to-sea</guid>
+        http://sjkim2322.github.io/logbook//out-to-sea</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//out-to-sea</guid>
       </item>
       
     
@@ -93,8 +174,8 @@ But the black kitten had been finished with earlier in the afternoon, and so, wh
         
         <pubDate>Sat, 18 Mar 1871 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//looking-glass-house</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//looking-glass-house</guid>
+        http://sjkim2322.github.io/logbook//looking-glass-house</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//looking-glass-house</guid>
       </item>
       
     
@@ -108,8 +189,8 @@ But the black kitten had been finished with earlier in the afternoon, and so, wh
         
         <pubDate>Sun, 26 Nov 1865 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//down-the-rabbit-hole</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//down-the-rabbit-hole</guid>
+        http://sjkim2322.github.io/logbook//down-the-rabbit-hole</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//down-the-rabbit-hole</guid>
       </item>
       
     
@@ -123,8 +204,8 @@ But the black kitten had been finished with earlier in the afternoon, and so, wh
         
         <pubDate>Thu, 19 Nov 1863 10:18:00 +0000</pubDate>
         <link>
-        http://biomadeira.github.io/jasper//gettysburg-address</link>
-        <guid isPermaLink="true">http://biomadeira.github.io/jasper//gettysburg-address</guid>
+        http://sjkim2322.github.io/logbook//gettysburg-address</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//gettysburg-address</guid>
       </item>
       
     
