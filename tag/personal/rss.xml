@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>sjkim2322.github.io/logbook/</title>
+   
+   <link>http://sjkim2322.github.io/logbook/</link>
+   <description></description>
+   <language>en-uk</language>
+   <managingEditor> SeongJin Kim</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>BoostCamp2기 wiki</title>
+	  <link>/logbook//BoostCamp2-Web-Wiki</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-02T01:00:00+09:00</pubDate>
+	  <guid>/logbook//BoostCamp2-Web-Wiki</guid>
+	  <description><![CDATA[
+	     <h2 id="boostcamp-2기-web과정-wiki">BoostCamp 2기 Web과정 WIKI</h2>
+<blockquote>
+  <p>부스트캠프 2기 Web 과정을 수료한 다른팀들 Wiki 입니다.</p>
+
+  <p><a href="https://github.com/Kgwkgwkgw/reservation-system/wiki">네버레스트 팀 Wiki</a> :
+Design Pattern<br />
+<a href="https://github.com/boostcamp2-gavas/reservation-system/wiki">각자바스 팀 Wiki</a> : 
+Spring Security<br />
+<a href="https://github.com/Se-yeong/reservation-system/wiki">미사일 팀 Wiki</a> : 
+Test<br />
+<a href="https://github.com/tjdcks12/reservation-system/wiki">네발자전거 팀 Wiki</a> : 
+웹 보안<br />
+<a href="https://github.com/BoostCamp2-OZ/reservation-system/wiki">오주의마법사 팀 Wiki</a> : 
+웹 성능(Front)<br />
+<a href="https://github.com/jungtaejoon/reservation-system/wiki">덩케르크 팀 Wiki</a> : 
+웹 MVC, REST<br />
+<a href="https://github.com/seokgun88/reservation-system/wiki">YG팀 Wiki</a> : 
+ORM : JPA <br />
+<a href="https://github.com/boostcamp2-apink/reservation-system/wiki">인간중심팀 Wiki</a> : 
+자바스크립트 비동기</p>
+</blockquote>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

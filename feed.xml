@@ -8,6 +8,28 @@
     
       
       <item>
+        <title>Javascript Hoisting 과 Execution Context</title>
+        
+          <description>&lt;p&gt;&lt;br /&gt;
+ 사실 본인은 자바스크립트가 꽤나 근본이 없는 언어라고 생각했다. &lt;br /&gt;
+&lt;del&gt;아무렇게 작성해도 알아먹으니까.&lt;/del&gt; &lt;br /&gt;
+특히나 Hoisting가 관련된 부분은 꽤 골머리를 썩혔다. 잘동작했던 코드였는데 잘되다가 안되다가..
+그 당시에는 괜히 자바스크립트를 탓했었다. &lt;br /&gt;
+하지만 그러한 이유는 본인에 무지함에 있었다는 것을 Hoisting을 이해한 뒤로 알게 되었다. &lt;br /&gt;
+이 글을 읽고 내글의 제목에 Execution Context를 추가했다. Hoisting만 얘기하기에는 설명이 부족할 것같다.
+&lt;a href=&quot;http://poiemaweb.com/js-execution-context&quot;&gt;한글로 제일 잘 설명된 Execution Context 관련 글&lt;/a&gt;이라 생각한다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 02 Sep 2017 22:30:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//Javascript-Hoisting</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//Javascript-Hoisting</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Spring Controller의 Parameter Annotation</title>
         
           <description>&lt;h3 id=&quot;controller의-parameter&quot;&gt;Controller의 Parameter&lt;/h3&gt;
