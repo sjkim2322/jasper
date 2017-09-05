@@ -400,6 +400,8 @@ table {
     width: 100%;
     max-width: 100%;
     background-color: transparent;
+    font-family: Gidole-Regular;
+    font-size: smaller;
 }
 
 table th,
