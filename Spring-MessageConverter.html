@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>The Businessman & the fisherman</title>
+    <title>MessageConverter</title>
     <meta name="description" content="SeongJin`s LogBook - " />
 
     <meta name="HandheldFriendly" content="True" />
@@ -95,9 +95,9 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/logbook/assets/images/cover7.jpg) ">
+<header class="main-header post-head " style="background-image: url(/logbook/assets/images/cover6.jpg) ">
     <nav class="main-nav  overlay  clearfix">
-        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/ghost.png" alt="Blog Logo" /></a>
+        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/logbook.png" alt="Blog Logo" /></a>
         
             <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         
@@ -106,23 +106,23 @@
 
 <main class="content" role="main">
 
-    <article class="post tag-test tag-content">
+    <article class="post tag">
 
         <header class="post-header">
-            <h1 class="post-title">The Businessman & the fisherman</h1>
+            <h1 class="post-title">MessageConverter</h1>
             <section class="post-meta">
             <!-- <a href='/logbook/'>SeongJin Kim</a> -->
-            <time class="post-date" datetime="2014-08-12">12 Aug 2014</time>
+            <time class="post-date" datetime="2017-09-05">06 Sep 2017</time>
                 <!-- [[tags prefix=" on "]] -->
                  
                 on 
                 
                     
-                       <a href='/logbook/tag/fables'>Fables</a>,
+                       <a href='/logbook/tag/boost'>Boost</a>,
                        
                 
                     
-                       <a href='/logbook/tag/fiction'>Fiction</a>
+                       <a href='/logbook/tag/spring'>Spring</a>
                        
                 
                 
@@ -131,39 +131,59 @@
 
         <section class="post-content">
             
-            <p>An American businessman took a vacation to a small coastal Mexican village on doctor’s orders. Unable to sleep after an urgent phone call from the office the first morning, he walked out to the pier to clear his head. A small boat with just one fisherman had docked, and inside the boat were several large yellowfin tuna. The American complimented the Mexican on the quality of his fish.</p>
+            <h4 id="의문점">의문점</h4>
+<p>Spring을 이용해서 Web Application개발을 하다보면 자연스럽게 REST API를 접하게 되고 <br />
+ 굳이 REST API를 사용하지 않더라도 클라이언트 단에서 XmlHttpRequest를 기반으로하는 Jquery의 Ajax 등을 이용해<br />
+ 화면전환없이 Data만을 요청하는 경우가 생긴다.</p>
 
-<p>“How long did it take you to catch them?” the American asked.</p>
+<p>이러한 경우가 없다면 Spring에서 ViewResolver를 이용해서 컨트롤러의 return 값을 viewResolver를 거쳐 <br />
+ 원하는 페이지를 Response하는 형태가 일반적이다.</p>
 
-<p>“Only a little while,” the Mexican replied in surprisingly good English.</p>
+<p>페이지 형태(html)의 Response가 아닌 Data만을 Response하고자 하는 경우 구현하는 방법은 생각보다 너무 쉽다.
+ 컨트롤러의 함수 위에 <code class="highlighter-rouge">@ResponseBody</code> 라는 어노테이션만 명시해주면 함수의 Return 자체가 Response의 Body로 들어가게 된다.
+ 즉, ViewResolver를 거쳐 서버의 Resource내부의 html파일(jsp 인경우도 있고)을 찾는 과정이 생략된다.
+ 코드로 살펴보자.</p>
 
-<p>“Why don’t you stay out longer and catch more fish?” the American then asked.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>    @GetMapping("/{categoryId}/products")
+    @ResponseBody
+    public List&lt;Product&gt; getProductsByCategoryId(@PathVariable Integer categoryId) {
+        return productService.getByCategoryId(categoryId); // return List&lt;Product&gt;
+    } 
+</code></pre>
+</div>
+<p>위의 코드의 어노테이션에 ResponseBody 이 쓰여있으므로 이 함수의 return은 그대로 요청에대한 응답인 Response의 Body에 들어가게 된다.</p>
 
-<p>“I have enough to support my family and give a few to friends,” the Mexican said as he unloaded them into a basket.</p>
+<p>여기서 본인은 의문점이 생겼다. <br />
+java의 클래스형태은 Bean을 Response의 body에 담았는데 java의 형태 그대로 클라이언트에 전달될 리는 없을 테고  클라이언트로 결과를 전송하기 전에 <br />
+무엇인가를 거쳐가는 듯한데 그것이 과연 무엇인가? 라는 의문이였다.</p>
 
-<p>“But… What do you do with the rest of your time?”</p>
+<h4 id="예상">예상</h4>
+<p>자바를 공부하면서 직렬화에 대해서 미약하게 나마 공부하였고 자바의 데이터가 자바의 외부로 빠져나갈 때는 반드시 <br />
+직렬화되어 나간다고 들었던 기억이 났다. <br />
+스프링에서도 마찬가지라고 생각했고 내 생각이 맞는지 인터넷을 뒤져보았다. <br />
+찾은 내용은 다음과 같다.</p>
 
-<p>The Mexican looked up and smiled. “I sleep late, fish a little, play with my children, take a siesta with my wife, Julia, and stroll into the village each evening, where I sip wine and play guitar with my amigos. I have a full and busy life, señor.”</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>It does not. When you return an instance from controller method annotated with @ResponseBody   
+you might say that it is serialized to JSON for instance. But this kind of serialization is not the Java serialization which involves Serializable interface.   
+@RequestBody and @ResponseBody annotations are handled by RequestResponseBodyMethodProcessor which uses HttpMessageConverter implementations to perform the conversion for example from object to JSON or from JSON to object.
+When you look at the HttpMessageConverter interface there is a canRead method which has the following signature: boolean canRead(Class&lt;?&gt; clazz, MediaType mediaType); and as you can see it is not bound to only serializable classes using generics.
+</code></pre>
+</div>
 
-<p>The American laughed and stood tall. “Sir, I’m a Harvard M.B.A. and can help you. You should spend more time fishing, and with the proceeds, buy a bigger boat. In no time, you could buy several boats with the increased haul. Eventually, you would have a fleet of fishing boats.”</p>
+<h4 id="결론">결론</h4>
+<p>지난 포스팅에서도 잠시 언급한 RequestBody 어노테이션에서 얘기한 것처럼 Spring은 MessageConverter를 이용하여
+클라이언트와 서버간 데이터를 주고받을 때 데이터의 format을 맞춰주는 것 같다.
+messageConverter 인터페이스를 구현한 여러 구현체들이 서버가 실행될 때 로드가 되고, 컨트롤러의 함수들중 요청한 URI와 일치하는 <br />
+함수에게 Request의 Body에 있는 내용들을 요청과 함께 넘어온 Content-type과 함께 Converting할 수 있는 converter구현체를 찾는다.
+함수의 로직이 실행되고 ResponseBody를 통해서 Bean을 클라언트로 넘겨 줄 때도 클라이언트가 응답을 받고자하는 포맷을 확인하고 
+Bean을 이형태로 Convert해줄 수 있는 구현체를 찾아 Converting을 한다.</p>
 
-<p>He continued, “Instead of selling your catch to a middleman, you would sell directly to the consumers, eventually opening your own cannery. You would control the product, processing, and distribution. You would need to leave this small coastal fishing village, of course, and move to Mexico City, then to Los Angeles, and eventually to New York City, where you could run your expanded enterprise with proper management.</p>
+<p>사실, ajax 를 이용해서 json형태로 응답을 받고자할 때 자신이 응답으로 받고자 하는 format을 딱히 설정하지 않아도 잘 받을 수 있는 경우가 있는데 <br />
+<a href="http://api.jquery.com/jquery.ajax/">jquery의 ajax에 관련한 document</a>를 참고하면 “Intelligent Guess”라고 설명되어 있다.
+즉, 별도로 명시하지 않아도 어느정도는 format을 자체적으로 결정할 수 있다.</p>
 
-<p>The Mexican fisherman asked, “But, señor, how long will all this take?”</p>
-
-<p>To which the American replied, “15-20 years, 25 tops.”</p>
-
-<p>“But what then, señor?”</p>
-
-<p>The American laughed and said, “That’s the best part. When the time is right, you would announce an IPO and sell your company stock to the public and become very rich. You would make millions.”</p>
-
-<p>“Millions señor? Then what?”</p>
-
-<p>“Then you would retire and move to a small coastal fishing village, where you would sleep late, fish a little, play with your kids, take a siesta with your wife, and stroll in to the village in the evenings where you could sip wine and play your guitar with your amigos.”</p>
-
-<p>Adapted from the “Anekdote zur Senkung der Arbeitsmoral” by <strong>Heinrich Böll</strong></p>
-
-<p>An influential German write and Nobel Prize for Literature in 1972.</p>
+<p>하지만 클라이언트와 서버간 데이터통신의 format에 대해 자세히 이해하고 원하는 정보들을 직접 입력하여 사용하는 것이 <br />
+코드를 최적화는 시작 단계가 아닌가라고 생각한다.</p>
 
 
         </section>
@@ -195,15 +215,15 @@
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="http://twitter.com/share?text=The Businessman & the fisherman&amp;url=http://sjkim2322.github.io/logbook/the-businessman-and-fisherman"
+                <a class="icon-twitter" href="http://twitter.com/share?text=MessageConverter&amp;url=http://sjkim2322.github.io/logbook/Spring-MessageConverter"
                     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://sjkim2322.github.io/logbook/the-businessman-and-fisherman"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://sjkim2322.github.io/logbook/Spring-MessageConverter"
                     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <span class="hidden">Facebook</span>
                 </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://sjkim2322.github.io/logbook/the-businessman-and-fisherman"
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://sjkim2322.github.io/logbook/Spring-MessageConverter"
                    onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <span class="hidden">Google+</span>
                 </a>
@@ -222,20 +242,20 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/logbook/assets/images/cover3.jpg)" href="/logbook/a-full-and-comprehensive-style-test">
+        <a class="read-next-story " style="background-image: url(/logbook/assets/images/cover6.jpg)" href="/logbook/java-hashMap">
             <section class="post">
-                <h2>A Full and Comprehensive Style Test</h2>
-                <p>This is just an ipsis verbis copy of the first example running on the Ghost...</p>
+                <h2>HashMap</h2>
+                <p>[참고링크 네이버 D2](http://d2.naver.com/helloworld/831311) 사실 본인은 Map을 잘 사용해보지 않았다. map에 대한 깊은 이해가 없기도 하였고...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/logbook/assets/images/cover4.jpg)" href="/logbook/i-have-a-dream">
+        <a class="read-next-story prev " style="background-image: url(/logbook/assets/images/cover6.jpg)" href="/logbook/Spring-Join-Integer-Wiki">
             <section class="post">
-                <h2>I Have a Dream</h2>
-                <p>I am happy to join with you today in what will go down in history...</p>
+                <h2>Spring Jdbc의 join과 Integer</h2>
+                <p>Join과 Integer라니 글의 주제가 꽤나 Matching되지 않아 보인다. 하지만 본인이 개발하면서 저 2가지의 개념사이에 연결부분이...</p>
             </section>
         </a>
     

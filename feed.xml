@@ -8,6 +8,39 @@
     
       
       <item>
+        <title>HashMap</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://d2.naver.com/helloworld/831311&quot;&gt;참고링크  네이버 D2&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 06 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//java-hashMap</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//java-hashMap</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>MessageConverter</title>
+        
+          <description>&lt;h4 id=&quot;의문점&quot;&gt;의문점&lt;/h4&gt;
+&lt;p&gt;Spring을 이용해서 Web Application개발을 하다보면 자연스럽게 REST API를 접하게 되고 &lt;br /&gt;
+ 굳이 REST API를 사용하지 않더라도 클라이언트 단에서 XmlHttpRequest를 기반으로하는 Jquery의 Ajax 등을 이용해&lt;br /&gt;
+ 화면전환없이 Data만을 요청하는 경우가 생긴다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 05 Sep 2017 15:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//Spring-MessageConverter</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//Spring-MessageConverter</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Spring Jdbc의 join과 Integer</title>
         
           <description>&lt;p&gt;Join과 Integer라니 글의 주제가 꽤나 Matching되지 않아 보인다.
