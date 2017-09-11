@@ -12,6 +12,76 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Prototype</title>
+	  <link>/logbook//javascript-prototype</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-07T01:00:00+09:00</pubDate>
+	  <guid>/logbook//javascript-prototype</guid>
+	  <description><![CDATA[
+	     <h3 id="javascript의-class">JavaScript의 Class</h3>
+<p>기본적으로 자바스크립트에서는 Class라는 개념이 없다. <br />
+ES6 스펙에 공식적으로 Class를 사용할 수 있는 문법이 추가 되었다. <br />
+하지만 여기서 사용하는 Class의 문법이 java와 같은 언어에서 동작하는 Class와 엄연히 다르다는 것을 알아야한다.</p>
+
+<h3 id="new">new</h3>
+<p>java에서는 new 키워드를 통해서 클래스의 인스턴스를 생성한다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//java   
+Person person = new Person();
+</code></pre>
+</div>
+<p>javascript에서도 new라는 키워드는 존재하며 사용하는 방식 또한 비슷하다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//javascript   
+var person = new Person();
+</code></pre>
+</div>
+<p>여기서 다른 점은 Type과 Person이 클래스이냐 함수이냐의 차이이다. <br />
+javascript에서 함수가 하는 역할은 java와 다르다. <br />
+일반적으로 java와 같은 언어에서 함수의 역할은 “일련의 처리를 하는 로직이 담긴 Block” 정도가 되겠다. <br />
+하지만 javascript에서는 위의 역할을 포함함과 동시에 <strong>“새로운 객체를 생성하는 생성자”</strong> 의 역할도 담당한다.<br />
+다음 코드를 보자.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function test() {
+    this.name = "Kim";
+}
+</code></pre>
+</div>
+<p>다음과 같은 코드를 new 키워드를 이용하여 생성자 함수로써 사용할 수 있는데 실행하면 다음의 작업들이 순차적으로 실행된다.</p>
+
+<ol>
+  <li>빈 오브젝트 생성</li>
+  <li>실행된 함수의 this value를 1번에서 생성한 빈 오브젝트에 바인딩</li>
+  <li>생성자함수의 prototype Object를 1번에서 생성한 빈오브젝트의 prototype으로 설정</li>
+  <li>생성자 함수의 내부 실행</li>
+  <li>특별히 명시된 return 문이 없는 경우 1번에서 생성한 오브젝트를 Return</li>
+</ol>
+
+<h3 id="prototype">Prototype</h3>
+<p>그런데 new 키워드를 통해 함수를 생성자로써 사용하는 것과 Prototype이랑 무슨 관계가 있는 것일까? <br />
+java와 같은 언어에 존재하는 상속과 같은 개념을 javascript에서는 prototype을 이용하여 흉내를 낼 수 있다. <br />
+앞서 얘기 한 것처럼 javscript의 함수의 역할은 새로운 객체를 생성하는 생성자 역할을 포함한다. <br />
+여기서 추가적으로 더 알아야할 것은 javascript의 객체는 반드시 자신의 부모역할을 하는 객체와 연결이 되어있다. <br />
+이러한 객체를 <strong>ProtoType객체</strong> 라고 한다.</p>
+
+<p>여기서 크롬 브라우저의 개발자 도구를 이용해서 객체의 내부를 살펴보면 의미의 혼돈이 생기게 된다. <br />
+그럴 수 밖에 없는 이유는 생성자역할을 하는 함수의 경우 함수의 자체적인 프로퍼티로 다음과 같은 2개의 프로퍼티를 갖는다.</p>
+
+<ol>
+  <li>prototype</li>
+  <li>__proto__</li>
+</ol>
+
+<p>앞서 얘기한 ProtoType객체에 해당하는 부분은 __proto__에 해당한다. <br />
+prototype 프로퍼티는 일반 객체는 갖고 있지 않은 프로퍼티로, 생성자 자격이 있는 함수가 새로운 객체를 생성할 때  <br />
+그객체의 Prototype 객체에 연결 시켜주기 위한 object를 가리키고 있는 프로퍼티이다.</p>
+
+<p>javscript의 모든객체는 prototype을 가지고 있고 어떤객체의 prototype또한 prototype을 가지고 있다. <br />
+즉, prototype은 chaining 되며 최종 객체인 Object까지 올라 갈 수있다.  <br />
+이 chaining을 통해서 객체 내부에 존재하지 않는 변수나 함수 일지라도 prototype에 있는 경우 이를 사용할 수 있게 된다.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Javascript Hoisting 과 Execution Context</title>
 	  <link>/logbook//Javascript-Hoisting</link>
 	  <author>SeongJin Kim</author>

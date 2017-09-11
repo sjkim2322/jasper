@@ -12,6 +12,208 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>String</title>
+	  <link>/logbook//java-String</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-11T01:00:00+09:00</pubDate>
+	  <guid>/logbook//java-String</guid>
+	  <description><![CDATA[
+	     <p><a href="http://www.thejavageek.com/2013/06/19/the-string-constant-pool/">링크</a></p>
+
+<p>java의 Data Type은 크게 Primitive Type과 Reference Type으로 나뉜다. <br />
+int, char, boolean 등과 같이 자바의 최상위 객체인 Obejct를 상속하지 않은 “비객체” 타입의 데이터타입을 “Primitive Type”이라 한다. <br />
+그만큼 자주 사용되기도 한다.</p>
+
+<p>String Type의 경우에는 사용하는 정도가 마치 Primitive Type처럼 사용된다. <br />
+하지만 String은 Object에 기반한 Reference Type이다. <br />
+String 클래스에 대해 자세히 알아보자.</p>
+
+<h4 id="string-literal">String Literal</h4>
+<p>java에서 String이 Reference 인지 Primitive인지 모호해지는 이유는  <br />
+String Literal 때문이라고 생각한다.<del>아닐수도있고</del></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>String a = "literal";
+String b = new String("literal");
+</code></pre>
+</div>
+
+<p>Reference Type의 경우 기본적으로 새로운 객체를 생성하기 위해서는  <br />
+new 키워드를 통해 해당 클래스의 Constructor를 실행시킴으로써 실행된다.</p>
+
+<p>String의 경우 new Keyword를 통해서만 아니라 단순히 literal선언을 통해 String 객체를 생성하고 초기화할 수 있다. <br />
+그렇다면 다음 코드의 결과를 예상해보자.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>a == b; //true or false?
+a.equals(b); //true or false?
+</code></pre>
+</div>
+
+<p>답은 <code class="highlighter-rouge">false, true</code> 이다. <br />
+객체 수준에서의 == 연산자의 경우 2개의 instance가 같은 instance인지를 판단한다. <br />
+첫번째의 답이 false인 것은 명백히 다른 instance이다. <br />
+두번째의 답이 true인 것은 String 클래스 내부에서 Object클래스의 equals 함수를 어떻게 구현했는지를 보면 알 수있다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    public boolean equals(Object anObject) {
+        if (this == anObject) {
+            return true;
+        }
+        if (anObject instanceof String) {
+            String anotherString = (String)anObject;
+            int n = value.length;
+            if (n == anotherString.value.length) {
+                char v1[] = value;
+                char v2[] = anotherString.value;
+                int i = 0;
+                while (n-- != 0) {
+                    if (v1[i] != v2[i])
+                        return false;
+                    i++;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+</code></pre>
+</div>
+
+<p>위 코드를 보면 String내부의 문자하나하를 비교하고 있는 것을 알 수있다. <br />
+String 클래스에서는 equal의 의미는 같은 Instance이냐? 라는 의미보다 같은 문자열이냐? 라는 의미가 더 적절하므로 <br />
+다른 Instance일지라도 문자열이 같으면 true를 Return 한다.</p>
+
+<p>그렇다면 첫번째 답이 false인 이유를 알아보자.  코드를 더 추가해보자.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>String a = "literal";
+String b = new String("literal");
+String c = "literal";
+String d = new String("literal");
+
+a == c //??
+b == d //??
+
+</code></pre>
+</div>
+<p>위 코드의 답은 <code class="highlighter-rouge">true, false</code>이다. <br />
+두번째 답의 경우 new 연산자가 각각 실행되었으므로 b와 d가 다른Instance인 것은 명백하다. <br />
+하지만 a와c의 경우 비록 두번 선언되었지만 같은 객체인 것이라는 것을 알려준다. <br />
+c가 초기화 될때 어떻게 a가 가리키는 객체를 가져올 수 있을까? <br />
+String Literal의 동작방식을 더 깊게 이해해볼 필요가 있다.</p>
+
+<h4 id="string-constantliteral-pool">String constant(literal) pool</h4>
+<p>String constanst pool이란 Heap영역에 있는 String literal을 저장하는 pool이다. <br />
+<a href="https://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#jls-3.10.5">java specification</a> <br />
+String literal 또한 new를 통해 생성된 String 객체 처럼 String type의 객체이다. <br />
+하지만 Compile Time에 String literal로 선언된 String은 Constant화 된다. <br />
+즉, 최초 생성 이후 같은 문자열이 또다시 literal로 선언되는 경우 처음에 만들어 두었던 객체를 가리키도록 한다. <br />
+상수화된 String객체는 일반 String 객체와 다른곳에 보관이 되어야한다. 상수화된 String 객체를 보관하는 곳이 <br />
+String constant pool이다. <br />
+literal로 선언된 String객체의 경우 또한 new로 생성한 String객체와 마찬가지로 String 객체가 하나 생성된다. <br />
+하지만 이를 constant화 시키기위해 즉, String constant pool에 고립시키기위한 작업을 추가적으로 진행한다. <br />
+Oracle의 명세에 의하면 다음과 같이 적혀있다.</p>
+
+<p>“string literals are “interend” so as to share unique instances”</p>
+
+<p>결국 literal로 선언된 String은 String객체를 생성한 이후 String 클래스의 native 함수인 <br />
+intern함수를 통해서</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>String constant pool에 해당 문자열이 있는지 확인한 이후 있으면 그에해당하는 주소값을 
+없으면 pool에 해당 문자열을 저장하고 그 주소값을 리턴
+</code></pre>
+</div>
+<p>하는 작업을 진행한다.</p>
+
+<p>위의 Specification에 적힌 6가지 points는 다음과 같다.</p>
+<ul>
+  <li>Literal strings within the same class in the same package  represent references to the same String object.
+    <ul>
+      <li>같은 package 내부의 같은 class안에서는 같은 문자열의 literal의 경우 같은 객체를 참조한다.</li>
+    </ul>
+  </li>
+  <li>Literal strings within different classes in the same package represent references to the same String object.
+    <ul>
+      <li>같은 package 내부의 다른 class안에서는 같은 문자열의 literal의 경우 같은 객체를 참조한다.</li>
+    </ul>
+  </li>
+  <li>Literal strings within different classes in different packages likewise represent references to the same String object.
+    <ul>
+      <li>다른 package이고 다른 class안에서는 같은 문자열의 literal의 경우 같은 객체를 참조한다.</li>
+    </ul>
+  </li>
+  <li>즉, project 단위(??)로 constant pool이 생성되는 듯 하다.</li>
+  <li>Strings computed by constant expressions are computed at compile time and then treated as if they were literals.
+    <ul>
+      <li>상수 표현식(literal)로만 연산된 String객체는 compiletime에 계산되어 마치 하나의 literal처럼 다뤄진다.</li>
+    </ul>
+  </li>
+  <li>Strings computed by concatenation at run time are newly created and therefore distinct.
+    <ul>
+      <li>runtime시에 +연산된 String 객체(String 변수를 연산에 사용하는 경우)의 경우 새로운 객체를 생성한다.</li>
+    </ul>
+  </li>
+  <li>The result of explicitly interning a computed string is the same string as any pre-existing literal string with the same contents.
+    <ul>
+      <li>String 객체의 intern 함수를 사용할 경우 객체의 value값과 정확히 일치하는 문자열을 constant pool에서 찾고 있으면 그것의 주소값을, 없으면 새로만든뒤 그 주소값을 리턴한다.</li>
+      <li>즉, 새로 생성된(distinct한) String 객체를 constant화 시킨다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="string의-immutable">String의 Immutable</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>String a = "bb";
+a += "c";
+
+//a = "bbc"
+</code></pre>
+</div>
+
+<p><a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18.1">String Concatenation Operator +</a>  <br />
+위의 Specification에 의하면 + 연산자를 포함한 연산식에서 하나의 피연산자가 String type인 경우, String이 아닌 다른 피연산자는 <br />
+String Type으로 conversion되어  concatenation된다.</p>
+
+<p>그리고,</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>The String object is newly created unless the expression is a constant expression.
+</code></pre>
+</div>
+<p>피연산자에 해당하는 것들이 모두 literal방식이 아닐 경우 값의 할당이 runtime으로 넘어가게된다.
+<code class="highlighter-rouge">a = "bb" + "cc";</code>의 경우 compile time에 “bb”와 “cc”가 합쳐진 “bbcc”를 constant pool에 저장한다.
+(물론 “bbcc”라는 문자열이 기존에 만들어지지 않은 것이라면 여기서 최초의 객체 생성이 일어난다.) <br />
+하지만 <code class="highlighter-rouge">a = "bb" + c</code> 처럼 String type의 변수 c를 연산에 포함시키는 경우 runtime에 새로운 String 객체가 생성되어 기존의 객체를 <br />
+대신하여 a가 새로생성된 객체를 가리키도록한다.</p>
+
+<p>이렇듯 초기화한 String 변수를 지속적으로 수정하는 작업은 새로운 String 객체를 계속해서 생성하기 때문에 성능상의 이슈가 있다.</p>
+
+<p>Java에서는 이 문제를 해결하기 위해 StringBuffer와 StringBuilder를 제공한다.</p>
+
+<h4 id="stringbuilder-stringbuffer">StringBuilder, StringBuffer</h4>
+<p>String 클래스는 그 Value값이 Immutable하기 때문에 값을 수정할 경우 새로운 객체가 생성된다. <br />
+StringBuilder는 이 문제를 해결할 수 있는 Mutable클래스이다. <br />
+String과 기본 동작은 똑같지만 문자열이 수정될 경우, Value값 자체를 수정하기 떄문에 새로운 객체가 생성되지 않는다. <br />
+하지만 Mutable한 특성은 Thread사용에 있어서 안전하지 못하다. <br />
+String 클래스가 Immutable인 것도 Thread사용에 있어서 안전하게 하기 위함인 것으로 생각한다. <br />
+StringBuilder를 통해서 Single Thread환경에서 새로운 객체생성에 따른 메모리 성능 이슈를 해결할 수있지만 <br />
+Thread환경에서의 안전성을 잃어버렸다. <br />
+이를 해결하기 위한 것이 StringBuffer이다. <br />
+StringBuffer는 StringBuilder와 똑같은 구조를 가지고 있다. <br />
+하지만 여기서 클래스 내부의 함수들에 synchronized 키워드를 이용하여 동시에 한개의 Thread에서만 사용할 수 있도록 제한함으로써 <br />
+다중 Thread환경에서 발생하는 문제를 해결할 수 있다.</p>
+
+<h4 id="string의-사용">String의 사용</h4>
+<p>앞서 얘기한 것처럼 String은 Immutable하기 때문에 잦은 수정작업은 즉시 버려지는 새로운객체를 계속해서 생성한다. <br />
+이를 해결하기 위해 StringBuilder나 StringBuffer를 사용하지만 Java명세에 의하면 다음과 같이 적혀있다.</p>
+
+<ul>
+  <li>An implementation may choose to perform conversion and concatenation in one step to avoid creating and then discarding an intermediate String object.
+To increase the performance of repeated string concatenation,
+a Java compiler may use the StringBuffer class or a similar technique to reduce the number of intermediate String objects that are created by evaluation of an expression.</li>
+</ul>
+
+<p>인터넷의 다른 블로그들을 찾아보면 JDK 1.5 버전부터 String은 CompileTime에 StringBuffer로 바뀐다는 글이 있다. <br />
+하지만 명세에는 StringBuilder로 바뀐다는 직접적인 언급은 없고 지속적으로 새로운 객체를 생성하는 이슈를 해결하기 위해 이를 해결하는 Class를 사용할 수도 있다고 언급되어있다.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>HashMap</title>
 	  <link>/logbook//java-hashMap</link>
 	  <author>SeongJin Kim</author>
@@ -117,6 +319,76 @@ Open Addressing방식보다 좋다고 할 수 있다.</p>
 Java8에서는 충돌이 많아지는 경우 Linked List 형태의 구조를 트리형태로 바꿈으로써 검색하는 속도를 더 줄일 수 있다.  <br />
 Linked List의 크기가 8개가 되면 HashMap은 LinkedList를 트리로 전환한다. <br />
 그리고 삭제 연산을 통해서 트리의 개수가 6개가 되면 다시 LinkedList로 변환한다.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Prototype</title>
+	  <link>/logbook//javascript-prototype</link>
+	  <author>SeongJin Kim</author>
+	  <pubDate>2017-09-07T01:00:00+09:00</pubDate>
+	  <guid>/logbook//javascript-prototype</guid>
+	  <description><![CDATA[
+	     <h3 id="javascript의-class">JavaScript의 Class</h3>
+<p>기본적으로 자바스크립트에서는 Class라는 개념이 없다. <br />
+ES6 스펙에 공식적으로 Class를 사용할 수 있는 문법이 추가 되었다. <br />
+하지만 여기서 사용하는 Class의 문법이 java와 같은 언어에서 동작하는 Class와 엄연히 다르다는 것을 알아야한다.</p>
+
+<h3 id="new">new</h3>
+<p>java에서는 new 키워드를 통해서 클래스의 인스턴스를 생성한다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//java   
+Person person = new Person();
+</code></pre>
+</div>
+<p>javascript에서도 new라는 키워드는 존재하며 사용하는 방식 또한 비슷하다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//javascript   
+var person = new Person();
+</code></pre>
+</div>
+<p>여기서 다른 점은 Type과 Person이 클래스이냐 함수이냐의 차이이다. <br />
+javascript에서 함수가 하는 역할은 java와 다르다. <br />
+일반적으로 java와 같은 언어에서 함수의 역할은 “일련의 처리를 하는 로직이 담긴 Block” 정도가 되겠다. <br />
+하지만 javascript에서는 위의 역할을 포함함과 동시에 <strong>“새로운 객체를 생성하는 생성자”</strong> 의 역할도 담당한다.<br />
+다음 코드를 보자.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function test() {
+    this.name = "Kim";
+}
+</code></pre>
+</div>
+<p>다음과 같은 코드를 new 키워드를 이용하여 생성자 함수로써 사용할 수 있는데 실행하면 다음의 작업들이 순차적으로 실행된다.</p>
+
+<ol>
+  <li>빈 오브젝트 생성</li>
+  <li>실행된 함수의 this value를 1번에서 생성한 빈 오브젝트에 바인딩</li>
+  <li>생성자함수의 prototype Object를 1번에서 생성한 빈오브젝트의 prototype으로 설정</li>
+  <li>생성자 함수의 내부 실행</li>
+  <li>특별히 명시된 return 문이 없는 경우 1번에서 생성한 오브젝트를 Return</li>
+</ol>
+
+<h3 id="prototype">Prototype</h3>
+<p>그런데 new 키워드를 통해 함수를 생성자로써 사용하는 것과 Prototype이랑 무슨 관계가 있는 것일까? <br />
+java와 같은 언어에 존재하는 상속과 같은 개념을 javascript에서는 prototype을 이용하여 흉내를 낼 수 있다. <br />
+앞서 얘기 한 것처럼 javscript의 함수의 역할은 새로운 객체를 생성하는 생성자 역할을 포함한다. <br />
+여기서 추가적으로 더 알아야할 것은 javascript의 객체는 반드시 자신의 부모역할을 하는 객체와 연결이 되어있다. <br />
+이러한 객체를 <strong>ProtoType객체</strong> 라고 한다.</p>
+
+<p>여기서 크롬 브라우저의 개발자 도구를 이용해서 객체의 내부를 살펴보면 의미의 혼돈이 생기게 된다. <br />
+그럴 수 밖에 없는 이유는 생성자역할을 하는 함수의 경우 함수의 자체적인 프로퍼티로 다음과 같은 2개의 프로퍼티를 갖는다.</p>
+
+<ol>
+  <li>prototype</li>
+  <li>__proto__</li>
+</ol>
+
+<p>앞서 얘기한 ProtoType객체에 해당하는 부분은 __proto__에 해당한다. <br />
+prototype 프로퍼티는 일반 객체는 갖고 있지 않은 프로퍼티로, 생성자 자격이 있는 함수가 새로운 객체를 생성할 때  <br />
+그객체의 Prototype 객체에 연결 시켜주기 위한 object를 가리키고 있는 프로퍼티이다.</p>
+
+<p>javscript의 모든객체는 prototype을 가지고 있고 어떤객체의 prototype또한 prototype을 가지고 있다. <br />
+즉, prototype은 chaining 되며 최종 객체인 Object까지 올라 갈 수있다.  <br />
+이 chaining을 통해서 객체 내부에 존재하지 않는 변수나 함수 일지라도 prototype에 있는 경우 이를 사용할 수 있게 된다.</p>
 
 	  ]]></description>
 	</item>

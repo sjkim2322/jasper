@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- [[! Page Meta ]] -->
-    <title>SeongJin`s LogBook</title>
+    <title>Author</title>
     <meta name="description" content="SeongJin`s LogBook - " />
 
     <meta name="HandheldFriendly" content="True" />
@@ -60,7 +60,7 @@
 
 
 </head>
-<body class="home-template nav-closed">
+<body class="paged archive-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">Menu</h3>
@@ -68,12 +68,12 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/logbook/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/logbook/">Home</a></li>
         <!--<li class="nav-about " role="presentation"><a href="/logbook/about">About</a></li>-->
         <li class="nav-fables " role="presentation"><a href="/logbook/tag/fables">Fables</a></li>
         <li class="nav-speeches " role="presentation"><a href="/logbook/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/logbook/tag/fiction">Fiction</a></li>
-        <li class="nav-author " role="presentation"><a href="/logbook/author/casper">Author</a></li>
+        <li class="nav-author  nav-current" role="presentation"><a href="/logbook/author/casper">Author</a></li>
         <li class="nav-boost " role="presentation"><a href="/logbook/tag/boost">BoostCamp 2기</a></li>
         <li class="nav-spring " role="presentation"><a href="/logbook/tag/spring">Spring</a></li>
         <li class="nav-javascript " role="presentation"><a href="/logbook/tag/javascript">Javascript</a></li>
@@ -87,39 +87,55 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/logbook/assets/images/main.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/logbook.png" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/logbook/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/logbook.png" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        <figure class="author-image">
+            <div class="img" style="background-image: url(/logbook/assets/images/profile.png)"><span class="hidden">SeongJin Kim's Picture</span></div>
+        </figure>
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">SeongJin`s LogBook</h1>
-            <h2 class="page-description"></h2>
+        <h1 class="author-title">SeongJin Kim</h1>
+        
+            <h2 class="author-bio"></h2>
+        
+        <div class="author-meta">
+            <span class="author-location icon-location">Seoul, Korea</span>
+            <span class="author-link icon-link"><a href="http://sjkim2322.github.io/logbook/">sjkim2322.github.io/logbook/</a></span>
+            <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+            <span class="author-stats"><i class="icon-stats"></i>17 posts</span>
         </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 4 </span>
-     
-        <a class="older-posts" href="/logbook/page2/" title="Next Page">Older Posts &raquo;</a>
+        
+            <a class="newer-posts" href="/logbook/author/sjkim2322/page3/" title="Previous Page">&laquo; Newer Posts</a>
+      
+    
+    <span class="page-number"> Page 4 of 4 </span>
      
 </nav>
         
@@ -129,10 +145,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/java-String">String</a></h2>
+            <h2 class="post-title"><a href="/logbook/down-the-rabbit-hole">Down The Rabbit Hole</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>링크 java의 Data Type은 크게 Primitive Type과 Reference Type으로 나뉜다. int, char, boolean 등과 같이 자바의 최상위 객체인 Obejct를 상속하지 않은 “비객체” 타입의 데이터타입을 “Primitive Type”이라... <a class="read-more" href="/logbook/java-String">&raquo;</a></p>
+            <p>Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had... <a class="read-more" href="/logbook/down-the-rabbit-hole">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
@@ -143,24 +159,20 @@
                 on 
                 
                     
-                       <a href='/logbook/tag/boost'>Boost</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/java'>Java</a>
+                       <a href='/logbook/tag/fiction'>Fiction</a>
                        
                 
             
-            <time class="post-date" datetime="2017-09-10">11 Sep 2017</time>
+            <time class="post-date" datetime="1865-11-26">26 Nov 1865</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/javascript-prototype">Prototype</a></h2>
+            <h2 class="post-title"><a href="/logbook/gettysburg-address">Gettysburg Address</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>JavaScript의 Class 기본적으로 자바스크립트에서는 Class라는 개념이 없다. ES6 스펙에 공식적으로 Class를 사용할 수 있는 문법이 추가 되었다. 하지만 여기서 사용하는 Class의 문법이 java와 같은 언어에서 동작하는... <a class="read-more" href="/logbook/javascript-prototype">&raquo;</a></p>
+            <p>Fourscore and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men... <a class="read-more" href="/logbook/gettysburg-address">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
@@ -171,99 +183,11 @@
                 on 
                 
                     
-                       <a href='/logbook/tag/boost'>Boost</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/javascript'>Javascript</a>
+                       <a href='/logbook/tag/fiction'>Fiction</a>
                        
                 
             
-            <time class="post-date" datetime="2017-09-06">07 Sep 2017</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/java-hashMap">HashMap</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>참고링크 네이버 D2 사실 본인은 Map을 잘 사용해보지 않았다. map에 대한 깊은 이해가 없기도 하였고 대규모의 데이터 배열을 순회하는 등의 기능을 짜야할 프로젝트를 진행해본적도 없었기 때문에... <a class="read-more" href="/logbook/java-hashMap">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/logbook/author/sjkim2322'>SeongJin Kim</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/logbook/tag/boost'>Boost</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/java'>Java</a>
-                       
-                
-            
-            <time class="post-date" datetime="2017-09-06">07 Sep 2017</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/Spring-MessageConverter">MessageConverter</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>의문점 Spring을 이용해서 Web Application개발을 하다보면 자연스럽게 REST API를 접하게 되고 굳이 REST API를 사용하지 않더라도 클라이언트 단에서 XmlHttpRequest를 기반으로하는 Jquery의 Ajax 등을 이용해 화면전환없이 Data만을... <a class="read-more" href="/logbook/Spring-MessageConverter">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/logbook/author/sjkim2322'>SeongJin Kim</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/logbook/tag/boost'>Boost</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/spring'>Spring</a>
-                       
-                
-            
-            <time class="post-date" datetime="2017-09-05">06 Sep 2017</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/logbook/Spring-Join-Integer-Wiki">Spring Jdbc의 join과 Integer</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Join과 Integer라니 글의 주제가 꽤나 Matching되지 않아 보인다. 하지만 본인이 개발하면서 저 2가지의 개념사이에 연결부분이 존재했고 그것에 대해 이야기하고자 한다. Integer란 java의 int Type에 대한 WrapperClass로써... <a class="read-more" href="/logbook/Spring-Join-Integer-Wiki">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/logbook/assets/images/profile.png" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/logbook/author/sjkim2322'>SeongJin Kim</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/logbook/tag/boost'>Boost</a>,
-                       
-                
-                    
-                       <a href='/logbook/tag/spring'>Spring</a>
-                       
-                
-            
-            <time class="post-date" datetime="2017-09-04">05 Sep 2017</time>
+            <time class="post-date" datetime="1863-11-19">19 Nov 1863</time>
         </footer>
     </article>
     
@@ -272,9 +196,11 @@
     
         <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 4 </span>
-     
-        <a class="older-posts" href="/logbook/page2/" title="Next Page">Older Posts &raquo;</a>
+        
+            <a class="newer-posts" href="/logbook/author/sjkim2322/page3/" title="Previous Page">&laquo; Newer Posts</a>
+      
+    
+    <span class="page-number"> Page 4 of 4 </span>
      
 </nav>
     

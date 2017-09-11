@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Prototype</title>
+    <meta name="description" content="SeongJin`s LogBook - " />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/logbook/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/logbook/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/logbook/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/logbook/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/logbook/page2/" />
+
+    <meta property="og:site_name" content="SeongJin`s LogBook" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SeongJin`s LogBook" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="/logbook/" />
+    <meta property="og:image" content="/logbook/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SeongJin`s LogBook" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:url" content="/logbook/" />
+    <meta name="twitter:image:src" content="/logbook/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "/logbook/",
+    "image": "/logbook/assets/images/cover1.jpg",
+    "description": ""
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="SeongJin`s LogBook" href="/logbook/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/logbook/">Home</a></li>
+        <!--<li class="nav-about " role="presentation"><a href="/logbook/about">About</a></li>-->
+        <li class="nav-fables " role="presentation"><a href="/logbook/tag/fables">Fables</a></li>
+        <li class="nav-speeches " role="presentation"><a href="/logbook/tag/speeches">Speeches</a></li>
+        <li class="nav-fiction " role="presentation"><a href="/logbook/tag/fiction">Fiction</a></li>
+        <li class="nav-author " role="presentation"><a href="/logbook/author/casper">Author</a></li>
+        <li class="nav-boost " role="presentation"><a href="/logbook/tag/boost">BoostCamp 2기</a></li>
+        <li class="nav-spring " role="presentation"><a href="/logbook/tag/spring">Spring</a></li>
+        <li class="nav-javascript " role="presentation"><a href="/logbook/tag/javascript">Javascript</a></li>
+        <li class="nav-java " role="presentation"><a href="/logbook/tag/java">Java</a></li>
+    </ul>
+    <!--<a class="subscribe-button icon-feed" href="/logbook/feed.xml">Subscribe</a>-->
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/logbook/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/logbook/"><img src="/logbook/assets/images/logbook.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag">
+
+        <header class="post-header">
+            <h1 class="post-title">Prototype</h1>
+            <section class="post-meta">
+            <!-- <a href='/logbook/'>SeongJin Kim</a> -->
+            <time class="post-date" datetime="2017-09-06">07 Sep 2017</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/logbook/tag/boost'>Boost</a>,
+                       
+                
+                    
+                       <a href='/logbook/tag/javascript'>Javascript</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <h3 id="javascript의-class">JavaScript의 Class</h3>
+<p>기본적으로 자바스크립트에서는 Class라는 개념이 없다. <br />
+ES6 스펙에 공식적으로 Class를 사용할 수 있는 문법이 추가 되었다. <br />
+하지만 여기서 사용하는 Class의 문법이 java와 같은 언어에서 동작하는 Class와 엄연히 다르다는 것을 알아야한다.</p>
+
+<h3 id="new">new</h3>
+<p>java에서는 new 키워드를 통해서 클래스의 인스턴스를 생성한다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//java   
+Person person = new Person();
+</code></pre>
+</div>
+<p>javascript에서도 new라는 키워드는 존재하며 사용하는 방식 또한 비슷하다.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>//javascript   
+var person = new Person();
+</code></pre>
+</div>
+<p>여기서 다른 점은 Type과 Person이 클래스이냐 함수이냐의 차이이다. <br />
+javascript에서 함수가 하는 역할은 java와 다르다. <br />
+일반적으로 java와 같은 언어에서 함수의 역할은 “일련의 처리를 하는 로직이 담긴 Block” 정도가 되겠다. <br />
+하지만 javascript에서는 위의 역할을 포함함과 동시에 <strong>“새로운 객체를 생성하는 생성자”</strong> 의 역할도 담당한다.<br />
+다음 코드를 보자.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>function test() {
+    this.name = "Kim";
+}
+</code></pre>
+</div>
+<p>다음과 같은 코드를 new 키워드를 이용하여 생성자 함수로써 사용할 수 있는데 실행하면 다음의 작업들이 순차적으로 실행된다.</p>
+
+<ol>
+  <li>빈 오브젝트 생성</li>
+  <li>실행된 함수의 this value를 1번에서 생성한 빈 오브젝트에 바인딩</li>
+  <li>생성자함수의 prototype Object를 1번에서 생성한 빈오브젝트의 prototype으로 설정</li>
+  <li>생성자 함수의 내부 실행</li>
+  <li>특별히 명시된 return 문이 없는 경우 1번에서 생성한 오브젝트를 Return</li>
+</ol>
+
+<h3 id="prototype">Prototype</h3>
+<p>그런데 new 키워드를 통해 함수를 생성자로써 사용하는 것과 Prototype이랑 무슨 관계가 있는 것일까? <br />
+java와 같은 언어에 존재하는 상속과 같은 개념을 javascript에서는 prototype을 이용하여 흉내를 낼 수 있다. <br />
+앞서 얘기 한 것처럼 javscript의 함수의 역할은 새로운 객체를 생성하는 생성자 역할을 포함한다. <br />
+여기서 추가적으로 더 알아야할 것은 javascript의 객체는 반드시 자신의 부모역할을 하는 객체와 연결이 되어있다. <br />
+이러한 객체를 <strong>ProtoType객체</strong> 라고 한다.</p>
+
+<p>여기서 크롬 브라우저의 개발자 도구를 이용해서 객체의 내부를 살펴보면 의미의 혼돈이 생기게 된다. <br />
+그럴 수 밖에 없는 이유는 생성자역할을 하는 함수의 경우 함수의 자체적인 프로퍼티로 다음과 같은 2개의 프로퍼티를 갖는다.</p>
+
+<ol>
+  <li>prototype</li>
+  <li>__proto__</li>
+</ol>
+
+<p>앞서 얘기한 ProtoType객체에 해당하는 부분은 __proto__에 해당한다. <br />
+prototype 프로퍼티는 일반 객체는 갖고 있지 않은 프로퍼티로, 생성자 자격이 있는 함수가 새로운 객체를 생성할 때  <br />
+그객체의 Prototype 객체에 연결 시켜주기 위한 object를 가리키고 있는 프로퍼티이다.</p>
+
+<p>javscript의 모든객체는 prototype을 가지고 있고 어떤객체의 prototype또한 prototype을 가지고 있다. <br />
+즉, prototype은 chaining 되며 최종 객체인 Object까지 올라 갈 수있다.  <br />
+이 chaining을 통해서 객체 내부에 존재하지 않는 변수나 함수 일지라도 prototype에 있는 경우 이를 사용할 수 있게 된다.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/logbook/author/sjkim2322" style="background-image: url(/logbook/assets/images/profile.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/logbook/author/sjkim2322">SeongJin Kim</a></h4>
+                
+                
+                    <p> </p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Seoul, Korea</span> 
+                    <span class="author-link icon-link"><a href="http://sjkim2322.github.io/logbook/"> sjkim2322.github.io/logbook/</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Prototype&amp;url=http://sjkim2322.github.io/logbook/javascript-prototype"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://sjkim2322.github.io/logbook/javascript-prototype"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://sjkim2322.github.io/logbook/javascript-prototype"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/logbook/assets/images/cover6.jpg)" href="/logbook/java-String">
+            <section class="post">
+                <h2>String</h2>
+                <p>[링크](http://www.thejavageek.com/2013/06/19/the-string-constant-pool/) java의 Data Type은 크게 Primitive Type과 Reference Type으로 나뉜다. int, char, boolean 등과 같이...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/logbook/assets/images/cover6.jpg)" href="/logbook/java-hashMap">
+            <section class="post">
+                <h2>HashMap</h2>
+                <p>참고링크 네이버 D2 사실 본인은 Map을 잘 사용해보지 않았다. map에 대한 깊은 이해가 없기도 하였고...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/logbook/">SeongJin`s LogBook</a> &copy; 2017</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/logbook/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/logbook/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

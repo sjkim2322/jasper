@@ -8,6 +8,39 @@
     
       
       <item>
+        <title>String</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;http://www.thejavageek.com/2013/06/19/the-string-constant-pool/&quot;&gt;링크&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 10 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//java-String</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//java-String</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Prototype</title>
+        
+          <description>&lt;h3 id=&quot;javascript의-class&quot;&gt;JavaScript의 Class&lt;/h3&gt;
+&lt;p&gt;기본적으로 자바스크립트에서는 Class라는 개념이 없다. &lt;br /&gt;
+ES6 스펙에 공식적으로 Class를 사용할 수 있는 문법이 추가 되었다. &lt;br /&gt;
+하지만 여기서 사용하는 Class의 문법이 java와 같은 언어에서 동작하는 Class와 엄연히 다르다는 것을 알아야한다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 06 Sep 2017 16:00:00 +0000</pubDate>
+        <link>
+        http://sjkim2322.github.io/logbook//javascript-prototype</link>
+        <guid isPermaLink="true">http://sjkim2322.github.io/logbook//javascript-prototype</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>HashMap</title>
         
           <description>&lt;p&gt;&lt;a href=&quot;http://d2.naver.com/helloworld/831311&quot;&gt;참고링크  네이버 D2&lt;/a&gt;&lt;/p&gt;
